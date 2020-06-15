@@ -27,6 +27,10 @@ public class Serverlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+    	Person myperson = new Person();
+    	myperson.setUserid(20190743);
+    	myperson.setPassword("javierfeo");
+    	request.setAttribute("myperson", myperson);
 		getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
 	}
 

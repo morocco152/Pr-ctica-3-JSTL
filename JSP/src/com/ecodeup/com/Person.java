@@ -4,22 +4,14 @@
 package com.ecodeup.com;
 
 import java.io.Serializable;
-import java.util.List;
-
-import com.sun.source.doctree.DocTree;
-import com.sun.source.doctree.DocTreeVisitor;
-import com.sun.source.doctree.SerialDataTree;
 
 /**
  * @author lm
  *
  */
-public class Person implements Serializable, SerialDataTree {
+public class Person implements Serializable {
 
-	// instacia persona
-	private long personId;
-	private String firstName;
-	private String userid;
+	private int userid;
 	private String password;
 	
 	public Person() {
@@ -27,28 +19,32 @@ public class Person implements Serializable, SerialDataTree {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String getTagName() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * @return the userid
+	 */
+	public int getUserid() {
+		return userid;
 	}
 
-	@Override
-	public <R, D> R accept(DocTreeVisitor<R, D> arg0, D arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * @param userid the userid to set
+	 */
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
-	@Override
-	public Kind getKind() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
 	}
 
-	@Override
-	public List<? extends DocTree> getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
