@@ -2,7 +2,9 @@ package com.ecodeup.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,17 +43,31 @@ public class ProductoController extends HttpServlet {
 			System.out.println("opcion crear precionada");
 			RequestDispatcher requestDispatcher=request.getRequestDispatcher("/views/crear.jsp");
 			requestDispatcher.forward(request, response);
-			
-			
 		}else if(opcion.equals("listar")) {
+			
+			ProductoDAO productoDAO=new ProductoDAO();
+			List<Producto> lista = new ArrayList<>();
+			try {
+				lista=productoDAO.obtenerProductos();
+				for(Producto producto : lista) {
+					System.out.println(producto);
+				}
+				request.setAttribute("lista",lista);
+				
+				
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/listar.jsp");
+				requestDispatcher.forward(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			System.out.println("opcion listar precionada");
 			
 		}
 		
-		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -70,6 +86,10 @@ public class ProductoController extends HttpServlet {
 		
 		try {
 			productoDAO.guardar(producto);
+			System.out.println("Registro guardado");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+			requestDispatcher.forward(request, response);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
